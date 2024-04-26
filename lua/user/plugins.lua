@@ -1,4 +1,10 @@
 return {
+    "tpope/vim-sensible",
+    "tpope/vim-repeat",
+    "tpope/vim-surround",
+    "ggandor/leap.nvim",
+    "nvim-lua/plenary.nvim",
+    "nvim-telescope/telescope.nvim",
 	{
 		"nvim-lualine/lualine.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
