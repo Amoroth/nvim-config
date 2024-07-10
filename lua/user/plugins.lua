@@ -5,18 +5,23 @@ return {
     "ggandor/leap.nvim",
     "nvim-lua/plenary.nvim",
     "nvim-telescope/telescope.nvim",
-	{
-		"nvim-lualine/lualine.nvim",
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		lazy = false,
-		dependencies = { "nvim-tree/nvim-web-devicons" },
-		config = function()
-			require("nvim-tree").setup {}
-		end,
-	},
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+    {
+        'stevearc/oil.nvim',
+        opts = {},
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+    },
+--	{
+--		"nvim-tree/nvim-tree.lua",
+--		lazy = false,
+--		dependencies = { "nvim-tree/nvim-web-devicons" },
+--		config = function()
+--			require("nvim-tree").setup {}
+--		end,
+--	},
 	{
 		"L3MON4D3/LuaSnip",
 		build = "make install_jsregexp",
@@ -101,6 +106,19 @@ return {
 				capabilities = capabilities
 			})
 			lsp.tsserver.setup({})
+                        lsp.pyright.setup({})
 		end
-	}
+	},
+        {
+            "kelly-lin/ranger.nvim",
+            config = function()
+                require("ranger-nvim").setup({ replace_netrw = true })
+                vim.api.nvim_set_keymap("n", "<leader>ef", "", {
+                    noremap = true,
+                    callback = function()
+                        require("ranger-nvim").open(true)
+                    end,
+                })
+            end,
+        }
 }
