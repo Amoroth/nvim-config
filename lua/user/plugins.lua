@@ -109,5 +109,18 @@ return {
 			lsp.tsserver.setup({})
             lsp.basedpyright.setup({})
 		end
-	}
+	},
+    {
+        "kdheepak/lazygit.nvim",
+        cmd = {
+            "LazyGit",
+            "LazyGitConfig",
+            "LazyGitCurrentFile",
+            "LazyGitFilter",
+            "LazyGitFilterCurrentFile"
+        },
+        dependencies = {
+            "nvim-lua/plenary.nvim"
+        }
+    }
 }
