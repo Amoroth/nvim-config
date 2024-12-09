@@ -1,4 +1,15 @@
 return {
+    -- {
+    --     "rose-pine/neovim",
+    --     as = "rose-pine",
+    --     config = function()
+    --         require("rose-pine").setup({
+    --             variant = "moon",
+    --             dark_variant = "moon"
+    --         })
+	--     end
+    -- },
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     "tpope/vim-sensible",
     "tpope/vim-repeat",
     "tpope/vim-surround",
@@ -106,8 +117,10 @@ return {
 			lsp.intelephense.setup({
 				capabilities = capabilities
 			})
-			lsp.tsserver.setup({})
+			lsp.ts_ls.setup({})
             lsp.basedpyright.setup({})
+            lsp.gopls.setup({})
+            lsp.ocamllsp.setup({})
 		end
 	},
     {
