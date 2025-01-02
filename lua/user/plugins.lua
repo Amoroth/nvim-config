@@ -13,7 +13,13 @@ return {
     "tpope/vim-sensible",
     "tpope/vim-repeat",
     "tpope/vim-surround",
-    "ggandor/leap.nvim",
+    {
+        "ggandor/leap.nvim",
+        config = function ()
+            require('leap').create_default_mappings()
+        end
+
+    },
     "nvim-lua/plenary.nvim",
     {
         "nvim-telescope/telescope.nvim",
@@ -60,6 +66,16 @@ return {
 						require('luasnip').lsp_expand(args.body)
 					end,
 				},
+                mapping = cmp.mapping.preset.insert({
+                    ["<C-b>"] = cmp.mapping.scroll_docs(-4),
+                    ["<C-f>"] = cmp.mapping.scroll_docs(4),
+                    ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
+                    ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+                    ["<C-Space>"] = cmp.mapping.confirm({
+                        behavior = cmp.ConfirmBehavior.Replace,
+                        select = true
+                    })
+                }),
 				sources = cmp.config.sources({
 					{ name = 'nvim_lsp' },
 					{ name = 'luasnip' },
