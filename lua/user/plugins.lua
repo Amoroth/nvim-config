@@ -15,7 +15,10 @@ return {
     "tpope/vim-surround",
     "ggandor/leap.nvim",
     "nvim-lua/plenary.nvim",
-    "nvim-telescope/telescope.nvim",
+    {
+        "nvim-telescope/telescope.nvim",
+        dependencies = { 'nvim-lua/plenary.nvim' }
+    },
     {
         "nvim-lualine/lualine.nvim",
         dependencies = { "nvim-tree/nvim-web-devicons" },
@@ -114,13 +117,22 @@ return {
 			local capabilities = require('cmp_nvim_lsp').default_capabilities(vim.lsp.protocol.make_client_capabilities())
 			local lsp = require 'lspconfig'
 
-			lsp.intelephense.setup({
-				capabilities = capabilities
-			})
+            if vim.fn.executable('php') == 1 then
+    			lsp.intelephense.setup({
+	    			capabilities = capabilities
+		    	})
+            end
+
 			lsp.ts_ls.setup({})
             lsp.basedpyright.setup({})
-            lsp.gopls.setup({})
-            lsp.ocamllsp.setup({})
+
+            if vim.fn.executable('go') == 1 then
+                lsp.gopls.setup({})
+            end
+
+            if vim.fn.executable('opam') == 1 then
+                lsp.ocamllsp.setup({})
+            end
 		end
 	},
     {
